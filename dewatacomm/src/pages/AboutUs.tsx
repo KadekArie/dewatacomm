@@ -55,18 +55,19 @@ function AboutUs(): React.JSX.Element {
             </div>
 
             {/* Sisi Kanan: Foto Fisik Toko */}
-            <div className="about-image-column" style={{ flex: 0.8, width: '100%', height: '380px', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--deep-steel)' }}>
-              <div 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  backgroundImage: `url(${imageLocation})`, 
-                  backgroundPosition: 'center center', 
-                  backgroundRepeat: 'no-repeat', 
-                  backgroundSize: 'cover' 
-                }}
-              />
-            </div>
+            <div className="about-image-column" style={{ flex: 0.8, width: '100%', minHeight: '300px', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--deep-steel)', display: 'block' }}>
+            <div 
+              style={{ 
+                width: '100%', 
+                height: '300px', 
+                backgroundImage: `url(${imageLocation})`, 
+                backgroundPosition: 'center center', 
+                backgroundRepeat: 'no-repeat', 
+                backgroundSize: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
 
           </div>
 
