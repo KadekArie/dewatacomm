@@ -326,14 +326,15 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
         .card-icon-placeholder { fill: var(--secondary-orange); }
 
         @media (max-width: 1024px) {
-          .hero-background { background-image: url(${heroMobile}); background-position: center center; }
-          .contact-placeholder-img { background-image: url(${imageLocation}); }
+          .hero-background { background-image: url(${heroMobile}); background-position: center center; background-size: cover; }
           .shop-container { flex-direction: column !important; text-align: center !important; gap: 35px !important; }
           .shop-text { text-align: center !important; }
           .shop-buttons { width: 100% !important; max-width: 320px !important; }
           .custom-services-grid { grid-template-columns: 1fr; gap: 20px; }
           .contact-container { flex-direction: column !important; gap: 40px !important; }
-          .contact-image-wrapper { height: 280px !important; }
+          
+          .contact-image-wrapper { height: 260px !important; width: 100% !important; display: block !important; }
+          .contact-placeholder-img { background-image: url(${imageLocation}); background-size: cover; background-position: center; }
         }
       `}</style>
     </>
