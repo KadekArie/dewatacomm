@@ -188,18 +188,30 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
       </section>
 
       {/* 4. CONTACT SECTION */}
+      {/* 4. CONTACT SECTION */}
       <section id="contact" style={{ backgroundColor: '#ffffff', padding: '60px 0 80px 0', width: '100%', boxSizing: 'border-box' }}>
         <div className="container contact-container" style={{ display: 'flex', gap: '50px', alignItems: 'center', margin: '0 auto', padding: '0 24px', maxWidth: '1200px', boxSizing: 'border-box' }}>
           
-          {/* Kolom Kiri: Gambar Utama */}
-          <div className="contact-image-wrapper" style={{ flex: 1, width: '100%', height: '400px', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--deep-steel)' }}>
-            <div 
-              className="contact-placeholder-img"
-              style={{ width: '100%', height: '100%', backgroundPosition: 'center center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
-            />
+          {/* Gambar Utama (Ditambahkan inline style background agar PASTI muncul) */}
+          <div 
+            className="contact-image-wrapper" 
+            style={{ 
+              flex: 1, 
+              width: '100%', 
+              height: '400px', 
+              borderRadius: '16px', 
+              overflow: 'hidden', 
+              border: '1px solid var(--deep-steel)',
+              backgroundImage: `url(${imageLocation})`,
+              backgroundPosition: 'center center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover'
+            }}
+          >
+            <div className="contact-placeholder-img" style={{ width: '100%', height: '100%' }} />
           </div>
 
-          {/* Kolom Kanan: Informasi Detail */}
+          {/* Informasi Detail */}
           <div className="contact-info-wrapper" style={{ flex: 1, width: '100%', textAlign: 'left' }}>
             <h2 style={{ color: 'var(--slate)', fontSize: '32px', fontWeight: '800', margin: '0 0 30px 0' }}>Kontak Kami</h2>
             
@@ -311,11 +323,10 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
           </div>
         </div>
       </section>
-
+      
       {/* INLINE CSS RESPONSIVE */}
       <style>{`
         .hero-background { background-image: url(${heroDesktop}); }
-        .contact-placeholder-img { background-image: url(${imageLocation}); }
         .btn-shop-shopee:hover { background-color: transparent !important; color: var(--secondary-orange) !important; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 104, 0, 0.1) !important; }
         .btn-shop-tokped:hover { background-color: var(--secondary-orange) !important; color: #ffffff !important; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 104, 0, 0.2) !important; }
         .legal-link:hover { color: var(--secondary-orange) !important; cursor: pointer; }
@@ -332,13 +343,24 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
           .shop-text { text-align: center !important; }
           .shop-buttons { width: 100% !important; max-width: 320px !important; }
           .custom-services-grid { grid-template-columns: 1fr; gap: 20px; }
+          .contact-container { flex-direction: column !important; gap: 35px !important; }
+          .contact-image-wrapper { 
+            order: 1 !important;
+            height: 280px !important; 
+            min-height: 280px !important; 
+            width: 100% !important; 
+            display: block !important; 
+          }
           
-          /* KUNCI PERBAIKAN: Membalik alur flex agar gambar naik ke atas teks kontak */
-          .contact-container { flex-direction: column-reverse !important; gap: 35px !important; }
+          .contact-info-wrapper { 
+            order: 2 !important; 
+          }
           
-          /* KUNCI PERBAIKAN: Mengunci dimensi tinggi min-height mutlak piksel agar gambar termuat sempurna */
-          .contact-image-wrapper { height: 300px !important; min-height: 300px !important; width: 100% !important; display: block !important; }
-          .contact-placeholder-img { background-image: url(${imageLocation}); background-size: cover; background-position: center; }
+          .contact-placeholder-img { 
+            background-image: url(${imageLocation}); 
+            background-size: cover; 
+            background-position: center; 
+          }
         }
       `}</style>
     </>
