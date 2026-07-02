@@ -12,11 +12,11 @@ interface HomeProps {
 function Home({ onPageChange }: HomeProps): React.JSX.Element {
   return (
     <>
-    {/* @ts-expect-error - ESLint */}
-    <Helmet>
+      {/* @ts-expect-error - Mencegah validasi tipe JSX internal library Helmet sesuai standar ESLint */}
+      <Helmet>
         {/* SEO Standar */}
         <title>Dewatacomm | Pusat Gadget Bali & Service HP Terpercaya</title>
-        <meta name="description" content="Dewatacomm Pusat Gadget Bali menyediakan smartphone, laptop original bergaransi resmi, dan aksesoris terlengkap. Layanan service HP hardware & software transparan di Gianyar, Bali." />
+        <meta name="description" content="Dewatacomm Pusat Gadget Bali menyediakan smartphone, laptop original bergaransi resmi, and aksesoris terlengkap. Layanan service HP hardware & software transparan di Gianyar, Bali." />
         <meta name="keywords" content="Dewatacomm, Pusat Gadget Bali, Service HP Bali, Jual Beli HP Gianyar, Tukar Tambah Perangkat, Ganti LCD HP Bali, Service iPhone Bali" />
         <link rel="canonical" href="https://dewatacomm.com/" />
 
@@ -70,7 +70,6 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
             boxSizing: 'border-box'
           }}
         >
-          {/* KUNCI PERBAIKAN BARIS 50: Mengubah texttitle menjadi textAlign */}
           <div className="shop-text" style={{ textAlign: 'left' }}>
             <h2 style={{ margin: 0, fontSize: '36px', fontWeight: '800', color: 'var(--primary-blue)', lineHeight: '1.2' }}>
               Dewatacomm
@@ -192,6 +191,7 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
       <section id="contact" style={{ backgroundColor: '#ffffff', padding: '60px 0 80px 0', width: '100%', boxSizing: 'border-box' }}>
         <div className="container contact-container" style={{ display: 'flex', gap: '50px', alignItems: 'center', margin: '0 auto', padding: '0 24px', maxWidth: '1200px', boxSizing: 'border-box' }}>
           
+          {/* Kolom Kiri: Gambar Utama */}
           <div className="contact-image-wrapper" style={{ flex: 1, width: '100%', height: '400px', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--deep-steel)' }}>
             <div 
               className="contact-placeholder-img"
@@ -199,6 +199,7 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
             />
           </div>
 
+          {/* Kolom Kanan: Informasi Detail */}
           <div className="contact-info-wrapper" style={{ flex: 1, width: '100%', textAlign: 'left' }}>
             <h2 style={{ color: 'var(--slate)', fontSize: '32px', fontWeight: '800', margin: '0 0 30px 0' }}>Kontak Kami</h2>
             
@@ -331,9 +332,12 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
           .shop-text { text-align: center !important; }
           .shop-buttons { width: 100% !important; max-width: 320px !important; }
           .custom-services-grid { grid-template-columns: 1fr; gap: 20px; }
-          .contact-container { flex-direction: column !important; gap: 40px !important; }
           
-          .contact-image-wrapper { height: 260px !important; width: 100% !important; display: block !important; }
+          /* KUNCI PERBAIKAN: Membalik alur flex agar gambar naik ke atas teks kontak */
+          .contact-container { flex-direction: column-reverse !important; gap: 35px !important; }
+          
+          /* KUNCI PERBAIKAN: Mengunci dimensi tinggi min-height mutlak piksel agar gambar termuat sempurna */
+          .contact-image-wrapper { height: 300px !important; min-height: 300px !important; width: 100% !important; display: block !important; }
           .contact-placeholder-img { background-image: url(${imageLocation}); background-size: cover; background-position: center; }
         }
       `}</style>
