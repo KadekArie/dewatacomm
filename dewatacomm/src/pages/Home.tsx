@@ -188,30 +188,26 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
       </section>
 
       {/* 4. CONTACT SECTION */}
-      {/* 4. CONTACT SECTION */}
       <section id="contact" style={{ backgroundColor: '#ffffff', padding: '60px 0 80px 0', width: '100%', boxSizing: 'border-box' }}>
         <div className="container contact-container" style={{ display: 'flex', gap: '50px', alignItems: 'center', margin: '0 auto', padding: '0 24px', maxWidth: '1200px', boxSizing: 'border-box' }}>
           
-          {/* Gambar Utama (Ditambahkan inline style background agar PASTI muncul) */}
-          <div 
-            className="contact-image-wrapper" 
-            style={{ 
-              flex: 1, 
-              width: '100%', 
-              height: '400px', 
-              borderRadius: '16px', 
-              overflow: 'hidden', 
-              border: '1px solid var(--deep-steel)',
-              backgroundImage: `url(${imageLocation})`,
-              backgroundPosition: 'center center',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover'
-            }}
-          >
-            <div className="contact-placeholder-img" style={{ width: '100%', height: '100%' }} />
+          {/* PEMBUNGKUS GAMBAR */}
+          <div className="contact-image-wrapper">
+            <div 
+              className="contact-placeholder-img"
+              style={{ 
+                width: '100%', 
+                height: '100%', 
+                backgroundImage: `url(${imageLocation})`, 
+                backgroundPosition: 'center center', 
+                backgroundRepeat: 'no-repeat', 
+                backgroundSize: 'cover',
+                display: 'block'
+              }}
+            />
           </div>
 
-          {/* Informasi Detail */}
+          {/* PEMBUNGKUS TEKS INFORMASI */}
           <div className="contact-info-wrapper" style={{ flex: 1, width: '100%', textAlign: 'left' }}>
             <h2 style={{ color: 'var(--slate)', fontSize: '32px', fontWeight: '800', margin: '0 0 30px 0' }}>Kontak Kami</h2>
             
@@ -337,29 +333,39 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
         .service-card-clean { background-color: #ffffff; border: 1px solid var(--deep-steel); border-radius: 16px; padding: 30px 24px; text-align: center; box-sizing: border-box; }
         .card-icon-placeholder { fill: var(--secondary-orange); }
 
+        /* CSS DEFAULT UNTUK TAMPILAN DESKTOP */
+        .contact-image-wrapper { 
+          flex: 1; 
+          width: 100%; 
+          height: 400px; 
+          border-radius: 16px; 
+          overflow: hidden; 
+          border: 1px solid var(--deep-steel); 
+        }
+
         @media (max-width: 1024px) {
           .hero-background { background-image: url(${heroMobile}); background-position: center center; background-size: cover; }
           .shop-container { flex-direction: column !important; text-align: center !important; gap: 35px !important; }
           .shop-text { text-align: center !important; }
           .shop-buttons { width: 100% !important; max-width: 320px !important; }
           .custom-services-grid { grid-template-columns: 1fr; gap: 20px; }
+          
+          /* Alur flex diatur column biasa (vertikal ke bawah) */
           .contact-container { flex-direction: column !important; gap: 35px !important; }
+          
+          /* PAKSA GAMBAR NAIK KE ATAS (ORDER: 1) DAN TINGGI TETAP 280PX */
           .contact-image-wrapper { 
-            order: 1 !important;
+            order: 1 !important; 
+            width: 100% !important; 
             height: 280px !important; 
             min-height: 280px !important; 
-            width: 100% !important; 
             display: block !important; 
           }
           
+          /* TEKS KONTAK DI BAWAH GAMBAR (ORDER: 2) */
           .contact-info-wrapper { 
             order: 2 !important; 
-          }
-          
-          .contact-placeholder-img { 
-            background-image: url(${imageLocation}); 
-            background-size: cover; 
-            background-position: center; 
+            width: 100% !important;
           }
         }
       `}</style>
