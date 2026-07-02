@@ -12,11 +12,11 @@ interface HomeProps {
 function Home({ onPageChange }: HomeProps): React.JSX.Element {
   return (
     <>
-      {/* @ts-expect-error - Mencegah validasi tipe JSX internal library Helmet sesuai standar ESLint */}
-      <Helmet>
+    {/* @ts-expect-error - ESLint */}
+    <Helmet>
         {/* SEO Standar */}
         <title>Dewatacomm | Pusat Gadget Bali & Service HP Terpercaya</title>
-        <meta name="description" content="Dewatacomm Pusat Gadget Bali menyediakan smartphone, laptop original bergaransi resmi, and aksesoris terlengkap. Layanan service HP hardware & software transparan di Gianyar, Bali." />
+        <meta name="description" content="Dewatacomm Pusat Gadget Bali menyediakan smartphone, laptop original bergaransi resmi, dan aksesoris terlengkap. Layanan service HP hardware & software transparan di Gianyar, Bali." />
         <meta name="keywords" content="Dewatacomm, Pusat Gadget Bali, Service HP Bali, Jual Beli HP Gianyar, Tukar Tambah Perangkat, Ganti LCD HP Bali, Service iPhone Bali" />
         <link rel="canonical" href="https://dewatacomm.com/" />
 
@@ -70,6 +70,7 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
             boxSizing: 'border-box'
           }}
         >
+          {/* KUNCI PERBAIKAN BARIS 50: Mengubah texttitle menjadi textAlign */}
           <div className="shop-text" style={{ textAlign: 'left' }}>
             <h2 style={{ margin: 0, fontSize: '36px', fontWeight: '800', color: 'var(--primary-blue)', lineHeight: '1.2' }}>
               Dewatacomm
@@ -191,23 +192,13 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
       <section id="contact" style={{ backgroundColor: '#ffffff', padding: '60px 0 80px 0', width: '100%', boxSizing: 'border-box' }}>
         <div className="container contact-container" style={{ display: 'flex', gap: '50px', alignItems: 'center', margin: '0 auto', padding: '0 24px', maxWidth: '1200px', boxSizing: 'border-box' }}>
           
-          {/* PEMBUNGKUS GAMBAR */}
-          <div className="contact-image-wrapper">
+          <div className="contact-image-wrapper" style={{ flex: 1, width: '100%', height: '400px', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--deep-steel)' }}>
             <div 
               className="contact-placeholder-img"
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                backgroundImage: `url(${imageLocation})`, 
-                backgroundPosition: 'center center', 
-                backgroundRepeat: 'no-repeat', 
-                backgroundSize: 'cover',
-                display: 'block'
-              }}
+              style={{ width: '100%', height: '100%', backgroundPosition: 'center center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
             />
           </div>
 
-          {/* PEMBUNGKUS TEKS INFORMASI */}
           <div className="contact-info-wrapper" style={{ flex: 1, width: '100%', textAlign: 'left' }}>
             <h2 style={{ color: 'var(--slate)', fontSize: '32px', fontWeight: '800', margin: '0 0 30px 0' }}>Kontak Kami</h2>
             
@@ -319,10 +310,11 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
           </div>
         </div>
       </section>
-      
+
       {/* INLINE CSS RESPONSIVE */}
       <style>{`
         .hero-background { background-image: url(${heroDesktop}); }
+        .contact-placeholder-img { background-image: url(${imageLocation}); }
         .btn-shop-shopee:hover { background-color: transparent !important; color: var(--secondary-orange) !important; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 104, 0, 0.1) !important; }
         .btn-shop-tokped:hover { background-color: var(--secondary-orange) !important; color: #ffffff !important; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 104, 0, 0.2) !important; }
         .legal-link:hover { color: var(--secondary-orange) !important; cursor: pointer; }
@@ -333,40 +325,15 @@ function Home({ onPageChange }: HomeProps): React.JSX.Element {
         .service-card-clean { background-color: #ffffff; border: 1px solid var(--deep-steel); border-radius: 16px; padding: 30px 24px; text-align: center; box-sizing: border-box; }
         .card-icon-placeholder { fill: var(--secondary-orange); }
 
-        /* CSS DEFAULT UNTUK TAMPILAN DESKTOP */
-        .contact-image-wrapper { 
-          flex: 1; 
-          width: 100%; 
-          height: 400px; 
-          border-radius: 16px; 
-          overflow: hidden; 
-          border: 1px solid var(--deep-steel); 
-        }
-
         @media (max-width: 1024px) {
-          .hero-background { background-image: url(${heroMobile}); background-position: center center; background-size: cover; }
+          .hero-background { background-image: url(${heroMobile}); background-position: center center; }
+          .contact-placeholder-img { background-image: url(${imageLocation}); }
           .shop-container { flex-direction: column !important; text-align: center !important; gap: 35px !important; }
           .shop-text { text-align: center !important; }
           .shop-buttons { width: 100% !important; max-width: 320px !important; }
           .custom-services-grid { grid-template-columns: 1fr; gap: 20px; }
-          
-          /* Alur flex diatur column biasa (vertikal ke bawah) */
-          .contact-container { flex-direction: column !important; gap: 35px !important; }
-          
-          /* PAKSA GAMBAR NAIK KE ATAS (ORDER: 1) DAN TINGGI TETAP 280PX */
-          .contact-image-wrapper { 
-            order: 1 !important; 
-            width: 100% !important; 
-            height: 280px !important; 
-            min-height: 280px !important; 
-            display: block !important; 
-          }
-          
-          /* TEKS KONTAK DI BAWAH GAMBAR (ORDER: 2) */
-          .contact-info-wrapper { 
-            order: 2 !important; 
-            width: 100% !important;
-          }
+          .contact-container { flex-direction: column !important; gap: 40px !important; }
+          .contact-image-wrapper { height: 280px !important; }
         }
       `}</style>
     </>
